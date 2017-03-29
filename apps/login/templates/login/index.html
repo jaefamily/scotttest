@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <h1>Login page</h1>
+  <a href="{% url 'login:logout' %}">Logout</a>
+  <div class="login">
+    <h2>Login:</h2>
+    <form class="" action="{% url 'login:login' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="email" value="name@username.com">
+      <input type="password" name="password" value="password">
+      <input type="submit" name="submit" placeholder="submit">
+    </form>
+  </div>
+
+  <div class="register">
+    <h2>Register:</h2>
+    <form class="" action="{% url 'login:register' %}"  method="post">
+      {% csrf_token %}
+      <ul>
+        <li><label for="Name">Name:</label> <input type="text" name="name" placeholder="name"></li>
+        <li><label for="email">Email Address:</label><input type="email" name="email" placeholder="name@username.com"></li>
+        <li><label for="password">Password:</label><input type="password" name="password" placeholder="password"></li>
+        <li><label for="password_confirm">Confirm Password:</label> <input type="password" name="password_confirm" placeholder="password"></li>
+        <li><label for="birth_date">Birth Date:</label>  <input type="date" name="birth_date" placeholder=""></li>
+        <input type="submit" name="submit" placeholder="submit">
+      </ul>
+    </form>
+  </div>
+
+  {% if messages %}
+    {% for error in messages %}
+      <p >{{error}}</p>
+    {% endfor %}
+
+  {% endif %}
+  <!--include login and register all on this page  -->
+  <!-- redirect to this page for errors from both login and register -->
+</body>
+</html>
